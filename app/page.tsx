@@ -86,7 +86,7 @@ export default function Home() {
                     );
                 })}
             </SimpleGrid>
-            <Marquee text="📍 Located in Espoo, Finland. ✌️ Developing both in frontend and backend. 🚀 Preferable with PHP, Golang, Ruby, Python and Javascript. ❤️ Love chess, reading, fishing, photographing, and many sports." />
+            {/* <Marquee text="📍 Located in Espoo, Finland. ✌️ Developing both in frontend and backend. 🚀 Preferable with PHP, Golang, Ruby, Python and Javascript. ❤️ Love chess, reading, fishing, photographing, and many sports." /> */}
         </>
     );
 }

@@ -43,7 +43,10 @@ export default function Home() {
                     alignItems={'center'}
                     gap="16px"
                 >
-                    <Link href="https://www.linkedin.com/in/lyonsun7">
+                    <Link
+                        target="_blank"
+                        href="https://www.linkedin.com/in/lyonsun7"
+                    >
                         <Image
                             src="/images/linkedin.svg"
                             alt="linkedin-profile"
@@ -51,7 +54,7 @@ export default function Home() {
                             height={'32px'}
                         />
                     </Link>
-                    <Link href="https://github.com/lyonsun">
+                    <Link target="_blank" href="https://github.com/lyonsun">
                         <Image
                             src="/images/github.svg"
                             alt="github-profile"

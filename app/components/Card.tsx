@@ -10,9 +10,8 @@ type ThemeProps = ComponentProps<'div'> & {
 
 const Card: FC<{
     theme: ThemeProps;
-    imageURL?: string;
     children: ReactNode;
-}> = ({ theme, imageURL, children }) => {
+}> = ({ theme, children }) => {
     return (
         <Flex
             justifyContent={'center'}
@@ -32,11 +31,6 @@ const Card: FC<{
             }}
             display={theme.display}
         >
-            {imageURL && (
-                <Box display={'none'} position={'absolute'} zIndex={'docked'}>
-                    <Image src={imageURL} alt="case-thumbnail" />
-                </Box>
-            )}
             {children}
         </Flex>
     );

@@ -1,4 +1,4 @@
-import { Box, Flex, keyframes } from '@chakra-ui/react';
+import { Flex, keyframes } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { ComponentProps, FC, ReactNode } from 'react';
 

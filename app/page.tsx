@@ -1,14 +1,6 @@
 'use client';
 
-import {
-    Box,
-    Flex,
-    Heading,
-    Image,
-    SimpleGrid,
-    Text,
-    chakra,
-} from '@chakra-ui/react';
+import { Flex, Heading, Image, SimpleGrid } from '@chakra-ui/react';
 import { Card } from './components/Card';
 import { BigLetter } from './components/BigLetter';
 import Link from 'next/link';

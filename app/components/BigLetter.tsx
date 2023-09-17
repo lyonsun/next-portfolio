@@ -13,14 +13,16 @@ const animationKeyframes = keyframes`
 const animation = `${animationKeyframes} 2s ease-in-out`;
 
 const BigLetter: FC<{
-    children: ReactNode;
-}> = ({ children }) => {
+    letter: string;
+}> = ({ letter }) => {
     return (
         <Text
+            overflow={'hidden'}
             fontSize="9xl"
             fontWeight="bold"
             width={'100%'}
             textAlign={'center'}
+            userSelect={'none'}
             as={motion.p}
             animation={animation}
             whileHover={{
@@ -30,7 +32,7 @@ const BigLetter: FC<{
                 transitionTimingFunction: 'ease-out',
             }}
         >
-            {children}
+            {letter}
         </Text>
     );
 };

@@ -46,7 +46,7 @@ export default function Home() {
                             },
                         }}
                     >
-                        <BigLetter>{card.letter}</BigLetter>
+                        <BigLetter letter={card.letter} />
                     </Card>
                 );
             })}

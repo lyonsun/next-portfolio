@@ -1,8 +1,17 @@
 'use client';
 
-import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Flex,
+    Heading,
+    Image,
+    SimpleGrid,
+    Text,
+    chakra,
+} from '@chakra-ui/react';
 import { Card } from './components/Card';
 import { BigLetter } from './components/BigLetter';
+import Link from 'next/link';
 
 type CardProps = {
     letter: string;
@@ -25,13 +34,48 @@ const cards: CardProps[] = [
 export default function Home() {
     return (
         <SimpleGrid columns={{ base: 2, lg: 3 }} height="100vh">
-            <Flex justifyContent={'center'} alignItems={'center'}>
+            <Flex
+                flexDir={'column'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                gap="32px"
+            >
                 <Heading
                     as="h1"
                     fontSize={{ base: 'xl', lg: '2xl', xl: '4xl' }}
                 >
                     👨🏻‍💻 I am a web developer
                 </Heading>
+                <Flex
+                    justifyContent={'center'}
+                    alignItems={'center'}
+                    gap="16px"
+                >
+                    <Link href="https://www.linkedin.com/in/lyonsun7">
+                        <Image
+                            src="/images/linkedin.svg"
+                            alt="linkedin-profile"
+                            width={'32px'}
+                            height={'32px'}
+                        />
+                    </Link>
+                    <Link href="https://github.com/lyonsun">
+                        <Image
+                            src="/images/github.svg"
+                            alt="github-profile"
+                            width={'32px'}
+                            height={'32px'}
+                        />
+                    </Link>
+                    <Link href="mailto:sunly917@gmail.com">
+                        <Image
+                            src="/images/email.svg"
+                            alt="github-profile"
+                            width={'32px'}
+                            height={'32px'}
+                        />
+                    </Link>
+                </Flex>
             </Flex>
 
             {cards?.map((card, index) => {

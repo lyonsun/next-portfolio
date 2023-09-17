@@ -1,5 +1,16 @@
-import { Box, Flex, Image } from '@chakra-ui/react';
+import { Box, Flex, keyframes } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { ComponentProps, FC, ReactNode } from 'react';
+
+const slideTopDown = keyframes`
+  0% { top: 100%; }
+  100% { top: 0; }
+`;
+
+const slideBottomUp = keyframes`
+  0% { bottom: 100%; }
+  100% { bottom: 0; }
+`;
 
 type ThemeProps = ComponentProps<'div'> & {
     display?: {
@@ -10,8 +21,9 @@ type ThemeProps = ComponentProps<'div'> & {
 
 const Card: FC<{
     theme: ThemeProps;
+    index: number;
     children: ReactNode;
-}> = ({ theme, children }) => {
+}> = ({ theme, index, children }) => {
     return (
         <Flex
             justifyContent={'center'}
@@ -30,6 +42,10 @@ const Card: FC<{
                 },
             }}
             display={theme.display}
+            as={motion.div}
+            animation={`${
+                index % 2 !== 0 ? slideTopDown : slideBottomUp
+            } 1s ease-in-out 500ms`}
         >
             {children}
         </Flex>

@@ -1,6 +1,6 @@
 import { Text, keyframes } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 
 const animationKeyframes = keyframes`
   0% { transform: scale(1) rotate(0); }
@@ -10,7 +10,7 @@ const animationKeyframes = keyframes`
   100% { transform: scale(1) rotate(0); }
 `;
 
-const animation = `${animationKeyframes} 2s ease-in-out`;
+const animation = `${animationKeyframes} 2s ease-in-out 1s`;
 
 const BigLetter: FC<{
     letter: string;
@@ -28,7 +28,7 @@ const BigLetter: FC<{
             whileHover={{
                 scale: 1.5,
                 rotate: '360deg',
-                transitionDuration: '200ms',
+                transitionDuration: '500ms',
                 transitionTimingFunction: 'ease-out',
             }}
         >

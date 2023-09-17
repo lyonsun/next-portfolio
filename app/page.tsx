@@ -1,9 +1,9 @@
 'use client';
 
-import { Flex, Heading, Image, SimpleGrid } from '@chakra-ui/react';
+import { Flex, Heading, SimpleGrid } from '@chakra-ui/react';
 import { Card } from './components/Card';
 import { BigLetter } from './components/BigLetter';
-import Link from 'next/link';
+import { SocialLink } from './components/SocialLink';
 
 type CardProps = {
     letter: string;
@@ -43,33 +43,23 @@ export default function Home() {
                     alignItems={'center'}
                     gap="16px"
                 >
-                    <Link
-                        target="_blank"
-                        href="https://www.linkedin.com/in/lyonsun7"
-                    >
-                        <Image
-                            src="/images/linkedin.svg"
-                            alt="linkedin-profile"
-                            width={'32px'}
-                            height={'32px'}
-                        />
-                    </Link>
-                    <Link target="_blank" href="https://github.com/lyonsun">
-                        <Image
-                            src="/images/github.svg"
-                            alt="github-profile"
-                            width={'32px'}
-                            height={'32px'}
-                        />
-                    </Link>
-                    <Link href="mailto:sunly917@gmail.com">
-                        <Image
-                            src="/images/email.svg"
-                            alt="github-profile"
-                            width={'32px'}
-                            height={'32px'}
-                        />
-                    </Link>
+                    <SocialLink
+                        linkURL="https://www.linkedin.com/in/lyonsun7"
+                        iconURL="/images/linkedin.svg"
+                        iconName="linkedin-profile"
+                        isExternalLink
+                    />
+                    <SocialLink
+                        linkURL="https://github.com/lyonsun"
+                        iconURL="/images/github.svg"
+                        iconName="github-profile"
+                        isExternalLink
+                    />
+                    <SocialLink
+                        linkURL="mailto:sunly917@gmail.com"
+                        iconURL="/images/email.svg"
+                        iconName="email-contact"
+                    />
                 </Flex>
             </Flex>
 

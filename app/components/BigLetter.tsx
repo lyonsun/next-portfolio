@@ -19,9 +19,16 @@ const BigLetter: FC<{
         <Text
             fontSize="9xl"
             fontWeight="bold"
+            width={'100%'}
+            textAlign={'center'}
             as={motion.div}
             animation={animation}
-            whileHover={{ scale: 1.5, rotate: '270deg' }}
+            whileHover={{
+                scale: 1.5,
+                rotate: '360deg',
+                transitionDuration: '200ms',
+                transitionTimingFunction: 'ease-out',
+            }}
         >
             {children}
         </Text>

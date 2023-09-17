@@ -34,13 +34,6 @@ const Card: FC<{
             _hover={{
                 bgColor: `${theme.color}.200`,
             }}
-            sx={{
-                _hover: {
-                    '>div': {
-                        display: 'block',
-                    },
-                },
-            }}
             display={theme.display}
             as={motion.div}
             animation={`${

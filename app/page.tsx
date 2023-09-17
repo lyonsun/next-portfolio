@@ -24,9 +24,9 @@ export default function Home() {
             <Flex justifyContent={'center'} alignItems={'center'}>
                 <Heading
                     as="h1"
-                    fontSize={{ base: 'lg', lg: '2xl', xl: '4xl' }}
+                    fontSize={{ base: 'xl', lg: '2xl', xl: '4xl' }}
                 >
-                    👨🏻‍💻 I am a web developer.
+                    👨🏻‍💻 I am a web developer
                 </Heading>
             </Flex>
 

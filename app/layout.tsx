@@ -1,25 +1,25 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { Providers } from './providers'
+import './globals.css';
+import type { Metadata } from 'next';
+import { Roboto_Mono } from 'next/font/google';
+import { Providers } from './providers';
 
-const inter = Inter({ subsets: ['latin'] })
+const robotoMono = Roboto_Mono({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'Liang Sun',
     description: 'KEEP DRY!',
-}
+};
 
 export default function RootLayout({
     children,
 }: {
-    children: React.ReactNode
+    children: React.ReactNode;
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body className={robotoMono.className}>
                 <Providers>{children}</Providers>
             </body>
         </html>
-    )
+    );
 }

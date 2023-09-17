@@ -1,35 +1,51 @@
-'use client'
+'use client';
 
-import { Box, Container, Heading, Text, SimpleGrid } from '@chakra-ui/react'
+import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { Card } from './components/Card';
+import { BigLetter } from './components/BigLetter';
+
+type CardProps = { letter: string; color: string; showOnlyOnMobile?: boolean };
+
+const cards: CardProps[] = [
+    { letter: 'L', color: 'purple' },
+    { letter: 'I', color: 'orange' },
+    { letter: 'A', color: 'red' },
+    { letter: 'N', color: 'green' },
+    { letter: 'G', color: 'yellow' },
+    { letter: 'S', color: 'teal' },
+    { letter: 'U', color: 'blue' },
+    { letter: 'N', color: 'pink' },
+    { letter: '❤️', color: 'gray', showOnlyOnMobile: true },
+];
 
 export default function Home() {
     return (
-        <Container maxW={'6xl'} textAlign={'center'}>
-            <SimpleGrid height={'100vh'} placeItems={'center'}>
-                <Box>
-                    <Heading as="h1" mb="6" size={{ base: 'md', lg: '3xl' }}>
-                        Hi there 👋
-                    </Heading>
+        <SimpleGrid columns={{ base: 2, lg: 3 }} height="100vh">
+            <Flex justifyContent={'center'} alignItems={'center'}>
+                <Heading
+                    as="h1"
+                    fontSize={{ base: 'lg', lg: '2xl', xl: '4xl' }}
+                >
+                    👨🏻‍💻 I am a web developer.
+                </Heading>
+            </Flex>
 
-                    <Text fontSize={{ base: 'md', lg: '3xl' }} mb="2">
-                        👨🏻‍💻 I am a web developer.
-                    </Text>
-                    <Text fontSize={{ base: 'md', lg: '3xl' }} mb="2">
-                        📍 Located in Espoo, Finland.
-                    </Text>
-                    <Text fontSize={{ base: 'md', lg: '3xl' }} mb="2">
-                        ✌️ Developing both in frontend and backend.
-                    </Text>
-                    <Text fontSize={{ base: 'md', lg: '3xl' }} mb="2">
-                        🚀 Preferable with PHP, Golang, Ruby, Python and
-                        Javascript.
-                    </Text>
-                    <Text fontSize={{ base: 'md', lg: '3xl' }} mb="2">
-                        ❤️ Love chess, reading, fishing, photographing, and many
-                        sports.
-                    </Text>
-                </Box>
-            </SimpleGrid>
-        </Container>
-    )
+            {cards?.map((card, index) => {
+                return (
+                    <Card
+                        key={index}
+                        theme={{
+                            color: card.color,
+                            display: {
+                                base: 'flex',
+                                lg: card.showOnlyOnMobile ? 'none' : 'flex',
+                            },
+                        }}
+                    >
+                        <BigLetter>{card.letter}</BigLetter>
+                    </Card>
+                );
+            })}
+        </SimpleGrid>
+    );
 }

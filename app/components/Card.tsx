@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Box, Flex, Image } from '@chakra-ui/react';
 import { ComponentProps, FC, ReactNode } from 'react';
 
 type ThemeProps = ComponentProps<'div'> & {
@@ -10,8 +10,9 @@ type ThemeProps = ComponentProps<'div'> & {
 
 const Card: FC<{
     theme: ThemeProps;
+    imageURL?: string;
     children: ReactNode;
-}> = ({ theme, children }) => {
+}> = ({ theme, imageURL, children }) => {
     return (
         <Flex
             justifyContent={'center'}
@@ -22,8 +23,20 @@ const Card: FC<{
             _hover={{
                 bgColor: `${theme.color}.200`,
             }}
+            sx={{
+                _hover: {
+                    '>div': {
+                        display: 'block',
+                    },
+                },
+            }}
             display={theme.display}
         >
+            {imageURL && (
+                <Box display={'none'} position={'absolute'} zIndex={'docked'}>
+                    <Image src={imageURL} alt="case-thumbnail" />
+                </Box>
+            )}
             {children}
         </Flex>
     );

@@ -4,10 +4,15 @@ import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { Card } from './components/Card';
 import { BigLetter } from './components/BigLetter';
 
-type CardProps = { letter: string; color: string; showOnlyOnMobile?: boolean };
+type CardProps = {
+    letter: string;
+    color: string;
+    imageURL?: string;
+    showOnlyOnMobile?: boolean;
+};
 
 const cards: CardProps[] = [
-    { letter: 'L', color: 'purple' },
+    { letter: 'L', color: 'purple', imageURL: '/images/djusie.jpg' },
     { letter: 'I', color: 'orange' },
     { letter: 'A', color: 'red' },
     { letter: 'N', color: 'green' },
@@ -41,6 +46,7 @@ export default function Home() {
                                 lg: card.showOnlyOnMobile ? 'none' : 'flex',
                             },
                         }}
+                        imageURL={card.imageURL}
                     >
                         <BigLetter>{card.letter}</BigLetter>
                     </Card>

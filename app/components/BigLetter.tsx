@@ -21,7 +21,7 @@ const BigLetter: FC<{
             fontWeight="bold"
             width={'100%'}
             textAlign={'center'}
-            as={motion.div}
+            as={motion.p}
             animation={animation}
             whileHover={{
                 scale: 1.5,

@@ -85,6 +85,7 @@ export default function Home() {
                         <Card
                             key={index}
                             index={index}
+                            cardsLength={cards.length}
                             theme={{
                                 color: card.color,
                                 display: {

@@ -25,6 +25,12 @@ const BigLetter: FC<{
             textAlign={'center'}
             userSelect={'none'}
             animation={animation}
+            whileHover={{
+                scale: 1.5,
+                rotate: '360deg',
+                transitionDuration: '500ms',
+                transitionTimingFunction: 'ease-out',
+            }}
         >
             {letter}
         </MotionText>

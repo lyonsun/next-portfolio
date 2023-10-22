@@ -31,8 +31,9 @@ type ThemeProps = ComponentProps<'div'> & {
 const Card: FC<{
     theme: ThemeProps;
     index: number;
+    cardsLength: number;
     children: ReactNode;
-}> = ({ theme, index, children }) => {
+}> = ({ theme, index, cardsLength, children }) => {
     return (
         <MotionFlex
             justifyContent={'center'}
@@ -51,7 +52,7 @@ const Card: FC<{
                 delay: index * 0.3,
                 ease: 'easeInOut',
             }}
-            zIndex={-index}
+            zIndex={cardsLength - index}
         >
             {children}
         </MotionFlex>

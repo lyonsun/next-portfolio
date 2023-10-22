@@ -1,6 +1,7 @@
 import { Image } from '@chakra-ui/react';
 import Link from 'next/link';
 import { FC } from 'react';
+import { MotionLink } from './Motions';
 
 const SocialLink: FC<{
     linkURL: string;
@@ -9,15 +10,18 @@ const SocialLink: FC<{
     isExternalLink?: boolean;
 }> = ({ linkURL, iconURL, iconName, isExternalLink = false }) => {
     return (
-        <Link target={isExternalLink ? '_blank' : '_self'} href={linkURL}>
+        <MotionLink
+            whileHover={{ scale: 1.2, opacity: 0.8 }}
+            target={isExternalLink ? '_blank' : '_self'}
+            href={linkURL}
+        >
             <Image
                 src={iconURL}
                 alt={iconName}
                 width={'32px'}
                 height={'32px'}
-                _hover={{ opacity: 0.6 }}
             />
-        </Link>
+        </MotionLink>
     );
 };
 

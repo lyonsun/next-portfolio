@@ -1,16 +1,25 @@
-import { Flex, keyframes } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import { ComponentProps, FC, ReactNode } from 'react';
+import { MotionFlex } from './Motions';
 
-const slideTopDown = keyframes`
-  0% { top: 100%; }
-  100% { top: 0; }
-`;
+const hideOnBottm = {
+    opacity: 0,
+    top: '100%',
+};
 
-const slideBottomUp = keyframes`
-  0% { bottom: 100%; }
-  100% { bottom: 0; }
-`;
+const hideOnTop = {
+    opacity: 0,
+    bottom: '100%',
+};
+
+const showBottomUp = {
+    opacity: 1,
+    top: 0,
+};
+
+const showTopDown = {
+    opacity: 1,
+    bottom: 0,
+};
 
 type ThemeProps = ComponentProps<'div'> & {
     display?: {
@@ -25,7 +34,7 @@ const Card: FC<{
     children: ReactNode;
 }> = ({ theme, index, children }) => {
     return (
-        <Flex
+        <MotionFlex
             justifyContent={'center'}
             alignItems={'center'}
             width="100%"
@@ -35,13 +44,17 @@ const Card: FC<{
                 bgColor: `${theme.color}.200`,
             }}
             display={theme.display}
-            as={motion.div}
-            animation={`${
-                index % 2 !== 0 ? slideTopDown : slideBottomUp
-            } 1s ease-in-out 500ms`}
+            initial={index % 2 === 0 ? hideOnBottm : hideOnTop}
+            animate={index % 2 === 0 ? showBottomUp : showTopDown}
+            transition={{
+                duration: 0.5,
+                delay: index * 0.3,
+                ease: 'easeInOut',
+            }}
+            zIndex={-index}
         >
             {children}
-        </Flex>
+        </MotionFlex>
     );
 };
 

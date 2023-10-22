@@ -1,10 +1,10 @@
 'use client';
 
-import { Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { Card } from './components/Card';
 import { BigLetter } from './components/BigLetter';
 import { SocialLink } from './components/SocialLink';
-import { Marquee } from './components/Marquee';
+import { MotionFlex } from './components/Motions';
 
 type CardProps = {
     letter: string;
@@ -28,7 +28,19 @@ export default function Home() {
     return (
         <>
             <SimpleGrid columns={{ base: 2, lg: 3 }} height="100vh">
-                <Flex
+                <MotionFlex
+                    initial={{
+                        scale: 0,
+                        opacity: 0,
+                    }}
+                    animate={{
+                        scale: 1,
+                        opacity: 1,
+                    }}
+                    transition={{
+                        duration: 1,
+                        delay: 5,
+                    }}
                     flexDir={'column'}
                     justifyContent={'center'}
                     alignItems={'center'}
@@ -38,7 +50,7 @@ export default function Home() {
                         as="h1"
                         fontSize={{ base: 'xl', lg: '2xl', xl: '4xl' }}
                     >
-                        👨🏻‍💻 I am a{' '}
+                        👨🏻‍💻 I am a&nbsp;
                         <Text as="span" color="purple.600">
                             web developer
                         </Text>
@@ -66,7 +78,7 @@ export default function Home() {
                             iconName="email-contact"
                         />
                     </Flex>
-                </Flex>
+                </MotionFlex>
 
                 {cards?.map((card, index) => {
                     return (

@@ -1,6 +1,7 @@
-import { Text, keyframes } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
+import { keyframes } from '@chakra-ui/react';
+
 import { FC } from 'react';
+import { MotionText } from './Motions';
 
 const animationKeyframes = keyframes`
   0% { transform: scale(1) rotate(0); }
@@ -10,30 +11,23 @@ const animationKeyframes = keyframes`
   100% { transform: scale(1) rotate(0); }
 `;
 
-const animation = `${animationKeyframes} 2s ease-in-out 1s`;
+const animation = `${animationKeyframes} 2s ease-in-out 3s`;
 
 const BigLetter: FC<{
     letter: string;
 }> = ({ letter }) => {
     return (
-        <Text
+        <MotionText
             overflow={'hidden'}
             fontSize="9xl"
             fontWeight="bold"
             width={'100%'}
             textAlign={'center'}
             userSelect={'none'}
-            as={motion.p}
             animation={animation}
-            whileHover={{
-                scale: 1.5,
-                rotate: '360deg',
-                transitionDuration: '500ms',
-                transitionTimingFunction: 'ease-out',
-            }}
         >
             {letter}
-        </Text>
+        </MotionText>
     );
 };
 

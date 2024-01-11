@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto_Mono } from 'next/font/google';
-import { Providers } from './providers';
 import Script from 'next/script';
 
 const robotoMono = Roboto_Mono({ subsets: ['latin'] });
@@ -10,6 +9,13 @@ export const metadata: Metadata = {
     title: 'Liang Sun',
     description: 'KEEP DRY!',
 };
+
+const gtmScript = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-ZGT4BC0C4P');`;
 
 export default function RootLayout({
     children,
@@ -25,23 +31,15 @@ export default function RootLayout({
                         src="https://www.googletagmanager.com/gtag/js?id=G-ZGT4BC0C4P"
                     />
                     <Script
-                        id="google-tag-namager"
+                        id="google-tag-manager"
                         dangerouslySetInnerHTML={{
-                            __html: `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', 'G-ZGT4BC0C4P');
-                `,
+                            __html: gtmScript,
                         }}
                     ></Script>
                 </>
             )}
 
-            <body className={robotoMono.className}>
-                <Providers>{children}</Providers>
-            </body>
+            <body className={robotoMono.className}>{children}</body>
         </html>
     );
 }

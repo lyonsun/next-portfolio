@@ -1,7 +1,6 @@
-import { Image } from '@chakra-ui/react';
-import Link from 'next/link';
 import { FC } from 'react';
 import { MotionLink } from './Motions';
+import Image from 'next/image';
 
 const SocialLink: FC<{
     linkURL: string;
@@ -15,12 +14,7 @@ const SocialLink: FC<{
             target={isExternalLink ? '_blank' : '_self'}
             href={linkURL}
         >
-            <Image
-                src={iconURL}
-                alt={iconName}
-                width={'32px'}
-                height={'32px'}
-            />
+            <Image src={iconURL} alt={iconName} width={32} height={32} />
         </MotionLink>
     );
 };

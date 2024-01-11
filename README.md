@@ -4,7 +4,7 @@
 
 -   TypeScript
 -   Next.js
--   Chakra UI
+-   Tailwind
 
 ## Development
 

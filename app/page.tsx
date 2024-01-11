@@ -1,34 +1,33 @@
 'use client';
 
-import { Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 import { Card } from './components/Card';
 import { BigLetter } from './components/BigLetter';
 import { SocialLink } from './components/SocialLink';
-import { MotionFlex } from './components/Motions';
+import { motion } from 'framer-motion';
 
 type CardProps = {
     letter: string;
     color: string;
-    showOnlyOnMobile?: boolean;
+    display: string;
 };
 
 const cards: CardProps[] = [
-    { letter: 'L', color: 'purple' },
-    { letter: 'I', color: 'orange' },
-    { letter: 'A', color: 'red' },
-    { letter: 'N', color: 'green' },
-    { letter: 'G', color: 'yellow' },
-    { letter: 'S', color: 'teal' },
-    { letter: 'U', color: 'blue' },
-    { letter: 'N', color: 'pink' },
-    { letter: '❤️', color: 'gray', showOnlyOnMobile: true },
+    { letter: 'L', color: 'bg-purple-200', display: 'flex' },
+    { letter: 'I', color: 'bg-orange-200', display: 'flex' },
+    { letter: 'A', color: 'bg-red-200', display: 'flex' },
+    { letter: 'N', color: 'bg-green-200', display: 'flex' },
+    { letter: 'G', color: 'bg-yellow-200', display: 'flex' },
+    { letter: 'S', color: 'bg-teal-200', display: 'flex' },
+    { letter: 'U', color: 'bg-blue-200', display: 'flex' },
+    { letter: 'N', color: 'bg-pink-200', display: 'flex' },
+    { letter: '❤️', color: 'bg-gray-200', display: 'flex lg:hidden' },
 ];
 
 export default function Home() {
     return (
         <>
-            <SimpleGrid columns={{ base: 2, lg: 3 }} height="100vh">
-                <MotionFlex
+            <div className="grid grid-cols-2 lg:grid-cols-3 h-screen">
+                <motion.div
                     initial={{
                         scale: 0,
                         opacity: 0,
@@ -39,27 +38,15 @@ export default function Home() {
                     }}
                     transition={{
                         duration: 1,
-                        delay: 5,
+                        delay: 2,
                     }}
-                    flexDir={'column'}
-                    justifyContent={'center'}
-                    alignItems={'center'}
-                    gap="32px"
+                    className="flex flex-col justify-center items-center gap-8"
                 >
-                    <Heading
-                        as="h1"
-                        fontSize={{ base: 'xl', lg: '2xl', xl: '4xl' }}
-                    >
+                    <h1 className="text-xl lg:text-2xl xl:text-4xl font-bold text-center font-sans">
                         👨🏻‍💻 I am a&nbsp;
-                        <Text as="span" color="purple.600">
-                            web developer
-                        </Text>
-                    </Heading>
-                    <Flex
-                        justifyContent={'center'}
-                        alignItems={'center'}
-                        gap="16px"
-                    >
+                        <span className="text-purple-500">web developer</span>
+                    </h1>
+                    <div className="flex justify-center items-center gap-4">
                         <SocialLink
                             linkURL="https://www.linkedin.com/in/lyonsun7"
                             iconURL="/images/linkedin.svg"
@@ -77,8 +64,8 @@ export default function Home() {
                             iconURL="/images/email.svg"
                             iconName="email-contact"
                         />
-                    </Flex>
-                </MotionFlex>
+                    </div>
+                </motion.div>
 
                 {cards?.map((card, index) => {
                     return (
@@ -88,18 +75,14 @@ export default function Home() {
                             cardsLength={cards.length}
                             theme={{
                                 color: card.color,
-                                display: {
-                                    base: 'flex',
-                                    lg: card.showOnlyOnMobile ? 'none' : 'flex',
-                                },
+                                display: card.display,
                             }}
                         >
                             <BigLetter letter={card.letter} />
                         </Card>
                     );
                 })}
-            </SimpleGrid>
-            {/* <Marquee text="📍 Located in Espoo, Finland. ✌️ Developing both in frontend and backend. 🚀 Preferable with PHP, Golang, Ruby, Python and Javascript. ❤️ Love chess, reading, fishing, photographing, and many sports." /> */}
+            </div>
         </>
     );
 }

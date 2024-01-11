@@ -1,5 +1,5 @@
 import { ComponentProps, FC, ReactNode } from 'react';
-import { MotionFlex } from './Motions';
+import { motion } from 'framer-motion';
 
 const hideOnBottm = {
     opacity: 0,
@@ -22,10 +22,7 @@ const showTopDown = {
 };
 
 type ThemeProps = ComponentProps<'div'> & {
-    display?: {
-        base: string;
-        lg: string;
-    };
+    display: string;
 };
 
 const Card: FC<{
@@ -35,16 +32,12 @@ const Card: FC<{
     children: ReactNode;
 }> = ({ theme, index, cardsLength, children }) => {
     return (
-        <MotionFlex
-            justifyContent={'center'}
-            alignItems={'center'}
-            width="100%"
-            position={'relative'}
-            bgColor={`${theme.color}.100`}
-            _hover={{
-                bgColor: `${theme.color}.200`,
+        <motion.div
+            className={`${theme.display} justify-center items-center w-full relative ${theme.color}`}
+            style={{
+                display: `${theme.display}`,
+                zIndex: cardsLength - index,
             }}
-            display={theme.display}
             initial={index % 2 === 0 ? hideOnBottm : hideOnTop}
             animate={index % 2 === 0 ? showBottomUp : showTopDown}
             transition={{
@@ -52,10 +45,9 @@ const Card: FC<{
                 delay: index * 0.3,
                 ease: 'easeInOut',
             }}
-            zIndex={cardsLength - index}
         >
             {children}
-        </MotionFlex>
+        </motion.div>
     );
 };
 

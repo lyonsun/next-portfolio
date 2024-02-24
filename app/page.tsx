@@ -5,44 +5,70 @@ import { motion } from 'framer-motion';
 import { SocialLink } from './components/SocialLink';
 
 const Home: FC = () => {
+    const defaultHeadline = 'I AM A WEB DEVELOPER';
+    const chars =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split(
+            ''
+        );
+
+    const [headline, setHeadline] = useState(defaultHeadline);
     const [animateVariant, setAnimateVariant] = useState('initial');
     const [width, setWidth] = useState(0);
-    const ref = useRef<HTMLHeadingElement>(null);
-
-    useEffect(() => {
-        if (!ref.current) return;
-        setWidth(ref.current.offsetWidth);
-    }, []);
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const headlineTextRef = useRef<HTMLHeadingElement>(null);
 
     const variants = {
         initial: {
             x: '0',
         },
         enter: {
-            x: `${width - 80}px`,
+            x: `${width - 76}px`,
         },
     };
+
+    const updateHeadline = () => {
+        const newHeadline = Array.from(
+            { length: 20 },
+            () => chars[Math.floor(Math.random() * chars.length)]
+        ).join('');
+        setHeadline(newHeadline);
+    };
+
+    const handleMouseMove = () => {
+        updateHeadline();
+    };
+
+    const handleMouseLeave = () => {
+        setHeadline(defaultHeadline);
+        setAnimateVariant('initial');
+    };
+
+    useEffect(() => {
+        if (!headingRef.current) return;
+        setWidth(headingRef.current.offsetWidth);
+    }, []);
 
     return (
         <div className="relative bg-indigo-300 overflow-hidden">
             <div className="h-screen w-screen flex flex-col justify-center items-center gap-20">
                 <div className="relative">
                     <motion.div
-                        className="absolute w-20 h-px bottom-0 bg-gradient-to-r from-indigo-300 via-indigo-700 to-indigo-300"
+                        className="absolute w-20 h-1 bottom-0 bg-gradient-to-r from-indigo-300 via-indigo-700 to-indigo-300"
                         variants={variants}
                         animate={animateVariant}
                         transition={{
                             ease: 'easeInOut',
-                            duration: 1.4,
+                            duration: 0.4,
                         }}
                     />
                     <h1
-                        ref={ref}
-                        className="text-2xl md:text-4xl lg:text-6xl font-bold uppercase text-center py-4 md:py-8"
+                        ref={headingRef}
+                        className="text-2xl md:text-4xl lg:text-6xl font-bold text-center px-2 py-4 md:py-8"
                         onMouseEnter={() => setAnimateVariant('enter')}
-                        onMouseLeave={() => setAnimateVariant('initial')}
+                        onMouseLeave={handleMouseLeave}
+                        onMouseMove={handleMouseMove}
                     >
-                        👨🏻‍💻 I am a web developer
+                        👨🏻‍💻 <span ref={headlineTextRef}>{headline}</span>
                     </h1>
                 </div>
                 <div className="flex justify-center items-center gap-4">

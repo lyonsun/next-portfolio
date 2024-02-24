@@ -7,9 +7,7 @@ import { SocialLink } from './components/SocialLink';
 const Home: FC = () => {
     const defaultHeadline = 'I AM A WEB DEVELOPER';
     const chars =
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split(
-            ''
-        );
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
     const [headline, setHeadline] = useState(defaultHeadline);
     const [animateVariant, setAnimateVariant] = useState('initial');
@@ -26,16 +24,34 @@ const Home: FC = () => {
         },
     };
 
-    const updateHeadline = () => {
-        const newHeadline = Array.from(
-            { length: 20 },
-            () => chars[Math.floor(Math.random() * chars.length)]
-        ).join('');
-        setHeadline(newHeadline);
+    let interalId: number;
+    let numberOfIteration = 0;
+    const updateHeadline = (target: HTMLSpanElement) => {
+        if (interalId) {
+            window.clearInterval(interalId);
+        }
+        interalId = window.setInterval(() => {
+            target.innerText = defaultHeadline
+                .split('')
+                .map((char, index) => {
+                    return index < numberOfIteration
+                        ? char
+                        : chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join('');
+
+            if (numberOfIteration > defaultHeadline.length) {
+                window.clearInterval(interalId);
+            }
+
+            numberOfIteration += 1;
+        }, 100);
     };
 
-    const handleMouseMove = () => {
-        updateHeadline();
+    const handleMouseEnter = (e: React.MouseEvent<HTMLSpanElement>) => {
+        const target = e.target as HTMLSpanElement;
+        updateHeadline(target);
+        setAnimateVariant('enter');
     };
 
     const handleMouseLeave = () => {
@@ -64,11 +80,15 @@ const Home: FC = () => {
                     <h1
                         ref={headingRef}
                         className="text-2xl md:text-4xl lg:text-6xl font-bold text-center px-2 py-4 md:py-8"
-                        onMouseEnter={() => setAnimateVariant('enter')}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseMove={handleMouseMove}
                     >
-                        👨🏻‍💻 <span ref={headlineTextRef}>{headline}</span>
+                        👨🏻‍💻&nbsp;
+                        <span
+                            ref={headlineTextRef}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {headline}
+                        </span>
                     </h1>
                 </div>
                 <div className="flex justify-center items-center gap-4">

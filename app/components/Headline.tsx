@@ -4,18 +4,22 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import { chars, defaultHeadline, headlines } from '../data';
 
 const Headline: FC = () => {
-    const [headline, setHeadline] = useState(defaultHeadline);
+    const [headline, setHeadline] = useState(defaultHeadline.toUpperCase());
     const [interalId, setInteralId] = useState(0);
+    const [previousIndex, setPreviousIndex] = useState(0);
 
     const updateHeadline = useCallback(
         (target: HTMLSpanElement) => {
             if (interalId) {
                 window.clearInterval(interalId);
             }
-            const newHeadline =
-                headlines[
-                    Math.floor(Math.random() * headlines.length)
-                ].toUpperCase();
+
+            let newIndex = Math.floor(Math.random() * headlines.length);
+            if (newIndex === previousIndex) {
+                newIndex = (newIndex + 1) % headlines.length;
+            }
+            setPreviousIndex(newIndex);
+            const newHeadline = headlines[newIndex].toUpperCase();
             setHeadline(newHeadline);
 
             let numberOfIteration = 0;
@@ -39,7 +43,7 @@ const Headline: FC = () => {
 
             setInteralId(newInteralId);
         },
-        [interalId]
+        [interalId, previousIndex]
     );
 
     useEffect(() => {
@@ -66,7 +70,7 @@ const Headline: FC = () => {
     return (
         <div className="relative">
             <h1 className="headline text-xl md:text-4xl font-bold text-center px-2 py-4 md:py-8">
-                {headline.toUpperCase()}
+                {headline}
             </h1>
         </div>
     );

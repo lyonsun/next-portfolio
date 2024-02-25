@@ -1,4 +1,5 @@
 const defaultHeadline = 'I am a web developer';
+
 const headlines = [
     'I am a web developer',
     'I am based in Finland',
@@ -17,6 +18,7 @@ const headlines = [
     'I love photographing',
     'I love playing basketball',
 ];
+
 const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 export { defaultHeadline, headlines, chars };

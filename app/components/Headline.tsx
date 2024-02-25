@@ -1,10 +1,12 @@
-import { FC, useState } from 'react';
+'use client';
+
+import { FC, useEffect, useState } from 'react';
 import { chars, defaultHeadline, headlines } from '../data';
 
 const Headline: FC = () => {
     const [headline, setHeadline] = useState(defaultHeadline);
 
-    let interalId: number;
+    let interalId = 0;
     let numberOfIteration = 0;
     const updateHeadline = (target: HTMLSpanElement) => {
         if (interalId) {
@@ -32,24 +34,20 @@ const Headline: FC = () => {
         }, 100);
     };
 
-    const handleMouseEnter = (e: React.MouseEvent<HTMLSpanElement>) => {
-        const target = e.target as HTMLSpanElement;
-        updateHeadline(target);
-    };
+    useEffect(() => {
+        const mainIntervalId = window.setInterval(() => {
+            updateHeadline(
+                document.querySelector('.headline') as HTMLHeadingElement
+            );
+        }, 4000);
 
-    const handleMouseLeave = () => {
-        setHeadline(headline.toUpperCase());
-    };
+        return () => window.clearInterval(mainIntervalId);
+    });
 
     return (
         <div className="relative">
-            <h1 className="text-2xl md:text-4xl font-bold text-center px-2 py-4 md:py-8">
-                <span
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    {headline.toUpperCase()}
-                </span>
+            <h1 className="headline text-xl md:text-4xl font-bold text-center px-2 py-4 md:py-8">
+                {headline.toUpperCase()}
             </h1>
         </div>
     );

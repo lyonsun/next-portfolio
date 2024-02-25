@@ -1,7 +1,4 @@
-'use client';
-
 import { FC } from 'react';
-import { SocialLink } from './components/SocialLink';
 import { Headline } from './components/Headline';
 import { LinkedInIcon } from './components/icons/linkedin';
 import { GitHubIcon } from './components/icons/github';
